@@ -1,0 +1,320 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+<html>
+<head>
+    <title>WEBSHOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="{% static  'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{% static  'css/style.css' %}" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static  'js/jquery-1.11.1.min.js' %}"></script>
+    <!-- start menu -->
+    <link href="{% static  'css/megamenu.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="{% static  'js/megamenu.js' %}"></script>
+    <script>$(document).ready(function () {
+            $(".megamenu").megamenu();
+        });</script>
+    <script src="{% static  'js/jquery.easydropdown.js' %}"></script>
+    <script src="{% static  'js/easyResponsiveTabs.js'%}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="men_banner">
+    <div class="container">
+        <div class="header_top">
+            <div class="header_top_left">
+                <ul class="header_user_info">
+                    <a class="login" href="#">
+                        <i class="user"> </i>
+                        <li class="user_desc">My Account</li>
+
+                    </a>
+
+
+                </ul>
+
+            </div>
+
+            <div class="header_top_right">
+                <div id="sb-search" class="sb-search">
+                    <form method="get" action="#" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="logo">
+                    <h1><a href="{% url 'index' %}"><span class="m_1">W</span>EBSHOP</a></h1>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li><a class="color2" href="#">Products</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <!--<div class="col1">
+                                        <!--<div class="h_nav">
+                                            <h4>Nieuw</h4>
+                                            <ul>
+                                                <li><a href="">Computers</a></li>
+                                                <li><a href="">Laptops</a></li>
+                                                <li><a href="">Monitors</a></li>
+
+                                            </ul>
+                                        </div>-->
+                                    <!--</div>-->
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Categories</h4>
+                                            <ul>
+
+                                                {% for categorie in menu_list %}
+                                                    <li>
+                                                        <a href="{% url 'categorie' categorie_id=categorie.id %}">{{ categorie.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col2">
+                                        <div class="h_nav">
+                                            <!--<ul>
+                                                <li class>
+                                                    <div class="p_left">
+                                                        <img src="images/p1.jpg" class="img-responsive" alt=""/>
+                                                    </div>
+                                                    <div class="p_right">
+                                                        <h4><a href="#">Denim shirt</a></h4>
+                                                        <span class="item-cat"><small><a
+                                                                        href="#">watches</a></small></span>
+                                                        <span class="price">29.99 $</span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li><a class="color10" href="#">Brands</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Brands</h4>
+                                            <ul>
+                                                {% for brand in brand_list %}
+                                                    <li>
+                                                        <a href="{% url 'merken' merk_id=brand.id %}">{{ brand.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color2" href="#" color="black">Shopping Cart</a>
+                            <!--<li class="active grid"><a class="color3" href="index.html">Sale</a></li>
+                            <li><a class="color7" href="404.html">News</a></li>-->
+                            <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="men">
+    <div class="container">
+        <div class="col-md-9 single_top">
+            <div class="single_left">
+                <div class="labout span_1_of_a1">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li data-thumb="images/s1.jpg">
+                                <img src="{{ MEDIA_URL }}{{ product.picture }}"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="cont1 span_2_of_a1 simpleCart_shelfItem">
+                    <h1>{{ product.name }}</h1>
+                    <p>Availability: <span class="color">
+                            {% if product.voorraad > 0 %}
+                             available {{ product.voorraad }}
+                            {% endif %}
+                            {% if product.voorraad == 0 %}
+                            not available
+                            {% endif %}
+                    </span></p>
+                    <div class="price_single">
+                        <!-- <span class="reducedfrom">$140.00</span>-->
+                        <span class="amount item_price actual">{{ product.price }}
+                            (excl. {{ product.btwPercentage }} % BTW)</span>
+                        <!--<a href="#">click for offer</a>-->
+                    </div>
+                    <h2 class="quick">Quick Overview:</h2>
+                    <p class="quick_desc">{{ product.summary }}</p>
+                    <!--<div class="wish-list">
+                         <ul>
+                             <li class="wish"><a href="#">Add to Wishlist</a></li>
+                             <li class="compare"><a href="#">Add to Compare</a></li>
+                         </ul>
+                     </div>-->
+                    <!--<ul class="size">
+                        <h3>Length</h3>
+                        <li><a href="#">32</a></li>
+                        <li><a href="#">34</a></li>
+                    </ul>-->
+                    <!--<div class="quantity_box">
+                        <ul class="single_social">
+                            <li><a href="#"><i class="fb1"> </i> </a></li>
+                            <li><a href="#"><i class="tw1"> </i> </a></li>
+                            <li><a href="#"><i class="g1"> </i> </a></li>
+                            <li><a href="#"><i class="linked"> </i> </a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>-->
+                    <a href=""
+                       class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1"
+                       target="_self">Toevoegen aan winkelmandje</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="sap_tabs">
+                <div id="horizontalTab" style="display: block; width: 100%; margin: 0;">
+                    <ul class="resp-tabs-list">
+                        <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Product Description</span>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Reviews</span></li>
+                    </ul>
+                    <!--product beschrijving-->
+                    <div class="resp-tabs-container">
+                        <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                            <div class="facts">
+                                <ul class="tab_list">
+                                    <li><a href="#">{{ product.summary }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--reviews-->
+                        <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                            <div class="facts">
+                                <ul class="tab_list">
+                                    {% for rewiew in review_list %}
+                                    <li><a href="#">{{ rewiew.reviewtext }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-3 tabs">
+            <h3 class="m_1">Related Products</h3>
+            <?php
+        /*
+                    foreach (ProductDb::getByMerk($product->getMerk()) as $gelijkaardigProduct) {
+                        if ($gelijkaardigProduct->getId() != $product->getId()) {
+                            */ ?>
+                    <ul class="product">
+                        <li class="product_img"><img
+                                    src="Back-End/Producten/Afbeeldingen/<?php /*echo $gelijkaardigProduct->getBannerafbeelding(); */ ?>"
+                                    class="img-responsive" alt=""/></li>
+                        <li class="product_desc">
+                            <h4>
+                                <a href="ProductPage.php?productId=<?php /*echo $gelijkaardigProduct->getId(); */ ?>"><?php /*echo $gelijkaardigProduct->getNaam(); */ ?></a>
+                            </h4>
+                        </li>
+                        <div class="clearfix"></div>
+                    </ul>
+                    <?php
+        /*                }
+                    }
+
+                    */ ?>
+
+
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+</div>
+<footer class="footer">
+            <div class="container">
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <p>If you want to stay updated on our status then subscribe.</p>
+                    <form>
+                        <input type="text" value="" onfocus="this.value='';"
+                               onblur="if (this.value == '') {this.value ='';}">
+                        <input type="submit" value="SUBSCRIBE">
+                    </form>
+                </div>
+                <div class="cssmenu">
+                    <ul>
+                        <li class="active"><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <ul class="social">
+                    <li><a href=""> <i class="instagram"> </i> </a></li>
+                    <li><a href=""><i class="fb"> </i> </a></li>
+                    <li><a href=""><i class="tw"> </i> </a></li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="copy">
+                    <p> &copy; 2015 Watches. All Rights Reserved | Design by <a href="http://w3layouts.com/"
+                                                                                target="_blank">W3layouts</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+<script defer src="{% static  'js/jquery.flexslider.js'%}"></script>
+    <link rel="stylesheet" href="{% static  'css/flexslider.css'%}" type="text/css" media="screen"/>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+</body>
+</html>

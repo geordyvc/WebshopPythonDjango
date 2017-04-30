@@ -1,0 +1,236 @@
+{% load static %}
+<!-- A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<html>
+<head>
+    <title>WEBSHOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="{% static  'css/bootstrap.css' %}" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Custom Theme files -->
+    <link href="{% static  'css/style.css' %}" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <!--webfont-->
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static  'js/jquery-1.11.1.min.js' %}"></script>
+    <!-- start menu -->
+    <link href="{% static  'css/megamenu.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="{% static  'js/megamenu.js' %}"></script>
+    <script>$(document).ready(function () {
+            $(".megamenu").megamenu();
+        });</script>
+    <script src="{% static  'js/jquery.easydropdown.js' %}"></script>
+</head>
+<body>
+<div class="banner">
+    <div class="container">
+        <div class="header_top">
+            <div class="header_top_left">
+                <ul class="header_user_info">
+                    <a class="login" href="#">
+                        <i class="user"> </i>
+                        <li class="user_desc">My Account</li>
+
+                    </a>
+
+
+                </ul>
+
+            </div>
+
+            <div class="header_top_right">
+                <div id="sb-search" class="sb-search">
+                    <form method="get" action="#" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="logo">
+                    <h1><a href="{% url 'index' %}"><span class="m_1">W</span>EBSHOP</a></h1>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li><a class="color2" href="#">Products</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <!--<div class="col1">
+                                        <!--<div class="h_nav">
+                                            <h4>Nieuw</h4>
+                                            <ul>
+                                                <li><a href="">Computers</a></li>
+                                                <li><a href="">Laptops</a></li>
+                                                <li><a href="">Monitors</a></li>
+
+                                            </ul>
+                                        </div>-->
+                                    <!--</div>-->
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Categories</h4>
+                                            <ul>
+
+                                                {% for categorie in menu_list %}
+                                                    <li>
+                                                        <a href="{% url 'categorie' categorie_id=categorie.id %}">{{ categorie.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col2">
+                                        <div class="h_nav">
+                                            <!--<ul>
+                                                <li class>
+                                                    <div class="p_left">
+                                                        <img src="images/p1.jpg" class="img-responsive" alt=""/>
+                                                    </div>
+                                                    <div class="p_right">
+                                                        <h4><a href="#">Denim shirt</a></h4>
+                                                        <span class="item-cat"><small><a
+                                                                        href="#">watches</a></small></span>
+                                                        <span class="price">29.99 $</span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li><a class="color10" href="#">Brands</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Brands</h4>
+                                            <ul>
+                                                {% for brand in brand_list %}
+                                                    <li>
+                                                        <a href="{% url 'merken' merk_id=brand.id %}">{{ brand.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color2" href="#" color="black">Shopping Cart</a>
+                            <!--<li class="active grid"><a class="color3" href="index.html">Sale</a></li>
+                            <li><a class="color7" href="404.html">News</a></li>-->
+                            <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <ul class="content-home">
+                {% for product in producten %}
+                    <li class="col-sm-4">
+                        <a href="" class="item-link"
+                           title="{{ product.name }}">
+                            <div class="bannerBox"
+                                 onclick="location.href='{% url 'product' product_id=product.id %}'">
+                                <img src="{{ MEDIA_URL }}{{ product.picture }}"
+                                     class="item-img" title="" alt="" width="100%" height="100%">
+                                <div class="item-html">
+                                    <h3>{{ product.name }}</h3>
+                                    <h4>{{ product.price }}</h4>
+                                    <p>{{ product.voorraad }}</p>
+                                    <a class="btn btn-success" href="{% url 'product' product_id=product.id %}">Go to</a>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+
+                <div class="clearfix"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="middle_content">
+    <div class="container">
+        <h2>Welcome</h2>
+        <p>This is a Webshop made by Geordy van Cutsem for a project called IT Trends&Talents at the ErasmusHogeschool in Brussels </p>
+    </div>
+</div>
+<!--<div class="content_middle_bottom">
+    <div class="header-left" id="home">
+        <section>
+            <ul class="lb-album">
+                <li>
+                    <a href="#image-1">
+                        <img src="images/g1.jpg" class="img-responsive" alt="image01"/>
+                        <span>Pointe</span>
+                    </a>
+                    <div class="lb-overlay" id="image-1">
+                        <a href="#page" class="lb-close">x Close</a>
+                        <img src="images/g1.jpg" class="img-responsive" alt="image01"/>
+                        <div>
+                            <h3>pointe <span>/point/</span></h3>
+                            <p>Dance performed on the tips of the toes</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>-->
+{% comment %}</div>{% endcomment %}
+<div class="footer">
+    <div class="container">
+        <div class="newsletter">
+            <h3>Newsletter</h3>
+            <p>If you want to stay updated on our status then subscribe.</p>
+            {% comment %}<form>
+                <input type="text" value="" onfocus="this.value='';"
+                       onblur="if (this.value == '') {this.value ='';}">
+                <input type="submit" value="SUBSCRIBE">
+            </form>{% endcomment %}
+        </div>
+        <div class="cssmenu">
+            <ul>
+                <li class="active"><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <ul class="social">
+            <li><a href=""> <i class="instagram"> </i> </a></li>
+            <li><a href=""><i class="fb"> </i> </a></li>
+            <li><a href=""><i class="tw"> </i> </a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="copy">
+            <p> &copy; 2015 Watches. All Rights Reserved | Design by <a href="http://w3layouts.com/"
+                                                                        target="_blank">W3layouts</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
