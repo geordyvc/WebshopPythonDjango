@@ -40,8 +40,7 @@ class Invoice(models.Model):
     invoice_producten = models.ForeignKey(Invoice_Producten, on_delete=models.CASCADE)
 
 class Review(models.Model):
-    id_gebruiker = models.IntegerField
-    id_product = models.IntegerField
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     reviewtext = models.TextField(max_length=555)
 
 class Gebruiker(models.Model):

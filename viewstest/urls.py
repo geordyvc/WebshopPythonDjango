@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^(?P<merk_id>[0-9]+)/merk/$', views.producten_merk, name='merken'),
     url(r'^(?P<product_id>[0-9]+)/product/$', views.producten_product_id, name='product'),
     url(r'^(?P<categorie_id>[0-9]+)/categorie/$', views.producten_categorie, name='categorie'),
-    url(r'^/winkelmand/$', views.winkelmand, name='winkelmand'),
+    url(r'^winkelmand/$', views.winkelmand, name='winkelmand'),
     url(r'^(?P<product_id>[0-9]+)/add/product/$', views.addproduct, name='addproduct'),
     # url(r'^producten/categorie/([0-9]{2})/$', views.producten_categorie),
 ]

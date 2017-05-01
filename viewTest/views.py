@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.urls import reverse
 from django.template import RequestContext
-
+from django.core import serializers
+import copy
 
 from .models import Merk
 from .models import Product
@@ -14,16 +15,18 @@ from .models import Categorie
 def homepage(request):
     menu_list = Categorie.objects.all()
     brand_list = Merk.objects.all()
-    producten = Product.objects.all()
+    product_list = Product.objects.all()
 
 
-    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': producten}
+
+
+    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': product_list}
     return render(request, 'homepage.html', context)
 
 
 def producten_merk(request, merk_id):
     merk = get_object_or_404(Merk, id=merk_id)
-    producten = Product.objects.filter(idMerk=merk.id)
+    producten = Product.objects.filter(merk=merk)
     title = merk.name
     menu_list = Categorie.objects.all()
     brand_list = Merk.objects.all()
@@ -40,7 +43,7 @@ def producten_product_id(request, product_id):
 
 def producten_categorie(request, categorie_id):
     categorie = get_object_or_404(Categorie, id=categorie_id)
-    producten = Product.objects.filter(idCategorie=categorie.id)
+    producten = Product.objects.filter(merk__product__categorie=categorie)
     title = categorie.name
     menu_list = Categorie.objects.all()
     brand_list = Merk.objects.all()
@@ -48,14 +51,42 @@ def producten_categorie(request, categorie_id):
     return render(request, 'productenpage.html', context)
 
 def winkelmand(request):
-    response = render_to_response()
+    menu_list = Categorie.objects.all()
+    brand_list = Merk.objects.all()
+    if 'winkelmand' in request.session:
+        producten = serializers.deserialize('json', request.session['winkelmand'])
+    else:
+        producten = list
+
+
+    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': producten}
+    return render(request, 'checkout.html', context)
 
 def addproduct(request, product_id):
 
+    if 'winkelmand' not in request.session:
+        product = get_object_or_404(Product, id=product_id)
+        producten = []
+        producten.insert(0, product)
+        productserialized = serializers.serialize('json', producten)
+        request.session['winkelmand'] = productserialized
 
+    else:
+        product = get_object_or_404(Product, id=product_id)
+        producten = serializers.deserialize('json', request.session['winkelmand'])
+        producten.insert(len(producten), product)
+        productserialized = serializers.serialize('json', producten)
+        request.session['winkelmand'] = productserialized
 
+    menu_list = Categorie.objects.all()
+    brand_list = Merk.objects.all()
+    if 'winkelmand' in request.session:
+        producten = serializers.deserialize('json', request.session['winkelmand'])
+    else:
+        producten = list
 
-
+    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': producten}
+    return render(request, 'checkout.html', context)
 
 # def producten_categorie(request, categorieId):
 #
