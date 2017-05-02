@@ -26,6 +26,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = ('product')
+        verbose_name_plural = ('products')
+        ordering = ('name',)
+
+
 class Adress(models.Model):
     adress = models.CharField(max_length=255)
     postcode = models.CharField(max_length=255)
@@ -34,7 +40,7 @@ class Adress(models.Model):
         return str(self.id) + ' ' + self.adress
 
 class Invoice_Producten(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product)
 
 class Invoice(models.Model):
     invoice_producten = models.ForeignKey(Invoice_Producten, on_delete=models.CASCADE)

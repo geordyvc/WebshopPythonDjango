@@ -66,15 +66,14 @@ def addproduct(request, product_id):
 
     if 'winkelmand' not in request.session:
         product = get_object_or_404(Product, id=product_id)
-        producten = []
-        producten.insert(0, product)
+        producten = list([product])
         productserialized = serializers.serialize('json', producten)
         request.session['winkelmand'] = productserialized
 
     else:
         product = get_object_or_404(Product, id=product_id)
-        producten = serializers.deserialize('json', request.session['winkelmand'])
-        producten.insert(len(producten), product)
+        producten = list(serializers.deserialize('json', request.session['winkelmand']))
+        producten.append([product])
         productserialized = serializers.serialize('json', producten)
         request.session['winkelmand'] = productserialized
 
