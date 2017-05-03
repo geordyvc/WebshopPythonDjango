@@ -32,6 +32,7 @@ class Product(models.Model):
         ordering = ('name',)
 
 
+
 class Adress(models.Model):
     adress = models.CharField(max_length=255)
     postcode = models.CharField(max_length=255)

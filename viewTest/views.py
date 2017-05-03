@@ -54,37 +54,48 @@ def winkelmand(request):
     menu_list = Categorie.objects.all()
     brand_list = Merk.objects.all()
     if 'winkelmand' in request.session:
-        producten = serializers.deserialize('json', request.session['winkelmand'])
+        productenids = request.session['winkelmand']
+        producten = Product.objects.all()
+        productendoorgeven = list()
+        for idx in productenids:
+            for product in producten:
+                if(product.id == int(idx)):
+                    productendoorgeven.append(product)
+
     else:
-        producten = list
+        productendoorgeven = list()
 
 
-    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': producten}
+    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': productendoorgeven}
     return render(request, 'checkout.html', context)
 
 def addproduct(request, product_id):
-
     if 'winkelmand' not in request.session:
         product = get_object_or_404(Product, id=product_id)
-        producten = list([product])
-        productserialized = serializers.serialize('json', producten)
-        request.session['winkelmand'] = productserialized
+        producten = list(product.id)
+        request.session['winkelmand'] = producten
 
     else:
         product = get_object_or_404(Product, id=product_id)
-        producten = list(serializers.deserialize('json', request.session['winkelmand']))
-        producten.append([product])
-        productserialized = serializers.serialize('json', producten)
-        request.session['winkelmand'] = productserialized
+        producten = request.session['winkelmand']
+        producten.append(product_id)
+        request.session['winkelmand'] = producten
 
     menu_list = Categorie.objects.all()
     brand_list = Merk.objects.all()
-    if 'winkelmand' in request.session:
-        producten = serializers.deserialize('json', request.session['winkelmand'])
-    else:
-        producten = list
 
-    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': producten}
+    if 'winkelmand' in request.session:
+        productenids = request.session['winkelmand']
+        producten = Product.objects.all()
+        productendoorgeven = list()
+        for idx in productenids:
+            for product in producten:
+                if(product.id == int(idx)):
+                    productendoorgeven.append(product)
+
+    else:
+        productendoorgeven = list()
+    context = {'menu_list': menu_list, 'brand_list': brand_list, 'producten': productendoorgeven}
     return render(request, 'checkout.html', context)
 
 # def producten_categorie(request, categorieId):

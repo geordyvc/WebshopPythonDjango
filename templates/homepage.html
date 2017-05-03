@@ -201,15 +201,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 {% comment %}</div>{% endcomment %}
 <div class="footer">
     <div class="container">
-        <div class="newsletter">
+        {% comment %}<div class="newsletter">
             <h3>Newsletter</h3>
             <p>If you want to stay updated on our status then subscribe.</p>
-            {% comment %}<form>
+            <form>
                 <input type="text" value="" onfocus="this.value='';"
                        onblur="if (this.value == '') {this.value ='';}">
                 <input type="submit" value="SUBSCRIBE">
-            </form>{% endcomment %}
-        </div>
+            </form>
+        </div>{% endcomment %}
         <div class="cssmenu">
             <ul>
                 <li class="active"><a href="#">Privacy</a></li>

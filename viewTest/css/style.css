@@ -1212,12 +1212,12 @@ ul.social li a i.tw {
 }
 .copy p a:hover{
     text-decoration: none;
-    color: #1a1a1a;
+    color: black;
 }
 
 .copy p {
     font-size: 1em;
-    color: whitesmoke;
+    color: black;
 }
 
 /*--men--*/
