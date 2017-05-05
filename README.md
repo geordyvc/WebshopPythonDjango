@@ -17,4 +17,4 @@ Hello, I made this webshop for a school project.
 ## Still needs to be done
 - Login page.
 - Account page.
-- Payement page.
+- Payment page.
